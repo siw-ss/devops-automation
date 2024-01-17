@@ -13,6 +13,10 @@ public class SeventeenApplication {
 	public String welcome(){
 		return "Spring Boot Docker Demo";
 	}
+	@GetMapping("/helloDev")
+	public String helloDev(){
+		return "This is dev branch";
+	}
 	public static void main(String[] args) {
 		SpringApplication.run(SeventeenApplication.class, args);
 	}
