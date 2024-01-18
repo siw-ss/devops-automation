@@ -36,6 +36,20 @@ pipeline {
                 }
             }
         }
+        stage('Deploy on Kubernetes'){
+            steps{
+                script{
+                    kubernetesDeploy(configs: "deployementbackend.yaml", kubeconfigId: "kubernetes")
+                }
+            }
+        }
     }
-
+    post {
+        success {
+            slackSend color: '#36a64f', message: "Deployment of backend with k8s succeeded!"
+        }
+        failure {
+            slackSend color: '#ff0000', message: "Deployment of backend with k8s failed!"
+        }
+    } 
 }
